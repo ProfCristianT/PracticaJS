@@ -27,26 +27,26 @@
 				<legend>Datos Basicos</legend>
 				<div class="campo">
 					<label for="nombre">Nombre</label>
-					<input type="text" id="nombre" name="nombre">
-					<span class="err"></span>
+					<input type="text" id="nombre" name="nombre" placeholder="Carlos Damian">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="apellido">apellido</label>
-					<input type="text" id="apellido" name="apellido">
-					<span class="err"></span>
+					<input type="text" id="apellido" name="apellido" placeholder="Sanchez">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="telefono">Telefono</label>
-					<input type="number" id="telefono" name="telefono">
-					<span class="err"></span>
+					<input type="number" id="telefono" name="telefono" placeholder="0123456789">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="email">email</label>
-					<input type="email" id="email" name="email">
-					<span class="err"></span>
+					<input type="email" id="email" name="email" placeholder="mail@empresa.com.ar">
+					<span class="errMsj"></span>
 				</div>
 				
 			</fieldset>
@@ -56,26 +56,26 @@
 
 				<div class="campo">
 					<label for="calle">calle</label>
-					<input type="text" id="calle" name="calle">
-					<span class="err"></span>
+					<input type="text" id="calle" name="calle" placeholder="Avenida San Martin">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="numeracion">numeracion</label>
-					<input type="number" id="numeracion" name="numeracion">
-					<span class="err"></span>
+					<input type="number" id="numeracion" name="numeracion" placeholder="4178">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="ciudad">ciudad</label>
-					<input type="text" id="ciudad" name="ciudad">
-					
+					<input type="text" id="ciudad" name="ciudad" placeholder="Buenos Aires">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="CP">Codigo Postal</label>
-					<input type="text" id="CP" name="CP">
-					<span class="err"></span>
+					<input type="text" id="CP" name="CP" placeholder="C1234">
+					<span class="errMsj"></span>
 				</div>
 			</fieldset>
 
@@ -84,18 +84,19 @@
 				
 				<div class="campo">
 					<label for="nombreEmpresa">Nombre de Empresa</label>
-					<input type="text" id="nombreEmpresa" name="nombreEmpresa">
-					<span class="err"></span>
+					<input type="text" id="nombreEmpresa" name="nombreEmpresa" placeholder="Gran Empresa">
+					<span class="errMsj"></span>
 				</div>
 
 				<div class="campo">
 					<label for="razonSocial">Razon Social</label>
 					<select name="razonSocial" id="razonSocial">
-						<option value="">Responsable Inscripto</option>
-						<option value="">IVA Excento</option>
-						<option value="">IVA Excento</option>
+						<option value="" selected disabled>Seleccione una opción...</option>
+						<option value="RI">Responsable Inscripto</option>
+						<option value="EX">IVA Excento</option>
+						<option value="CO">Consumidor Final</option>
 					</select>
-					<span class="err"></span>
+					<span class="errMsj"></span>
 				</div>
 				
 			</fieldset>
