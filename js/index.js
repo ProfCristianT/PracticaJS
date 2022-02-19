@@ -135,7 +135,7 @@ const ampliarProductos = document.querySelector('#ampliarProductos');
 	//-Calle: hasta 40 caracteres alfanumericos
 	validity(form.calle , "blur", (ev) => {
 		msj = "";
-		regExpCalle = /^\w{3,40}$/;
+		regExpCalle = /^[\w ]{3,40}$/;
 
 		if( !regExpCalle.test(ev.target.value) ){
 			msj = "Debe tener entre 3 y 40 caracteres alfanumericos";
@@ -165,9 +165,9 @@ const ampliarProductos = document.querySelector('#ampliarProductos');
 	//-Ciudad: hasta 40 caracteres alfanumericos
 	validity(form.ciudad , "blur", (ev) => {
 		msj = "";
-		expRegCiudad = /^\w{3,40}$/ 
+		expRegCiudad = /^[\w ]{3,40}$/ 
 
-		if(ev.target.value.length < 3){
+		if( !expRegCiudad.test(ev.target.value) ){
 			msj = "La ciudad debe tener entres 3 y 40 caracteres alfanumericos";
 		}
 		
@@ -215,3 +215,62 @@ const ampliarProductos = document.querySelector('#ampliarProductos');
 		
 		return msj;
 	});
+
+
+	form.addEventListener("submit", ev => {
+		let ok = true;
+
+		ev.target.querySelectorAll("input, select").forEach( input => {
+			if(input.value === ""){
+				ev.preventDefault();
+				document.querySelector('span.errForm').innerText = "Debe completar todos los campos"
+				ok = false;
+			}
+		} );
+
+
+		if(ok){
+			const formData = new FormData(ev.target);
+			//XHR
+			/*
+			xhr = new XMLHttpRequest()
+			xhr.open('POST','API/recibir.php')
+			xhr.responseType = "json";
+
+			xhr.send(formData);
+
+			xhr.addEventListener('load', ev =>{
+				receivedNotification(ev.target.response.ok)
+			});
+			*/
+			//Fetch
+			fetch('API/recibir.php', {
+				method: "POST",
+				body: formData
+			})
+			.then( response => response.json() )
+			.then( json => receivedNotification(json.ok) )
+		} 
+	});
+
+
+	const receivedNotification = ok => {
+		console.log(ok)
+		const divMsj = document.createElement("div")
+		divMsj.classList.add("receivedNotification")
+
+		if (ok){
+			divMsj.classList.add("ok")
+			divMsj.innerText = "Datos cargados correctamente";
+		}else{
+			divMsj.classList.add("err")
+			divMsj.innerText = "Error en la carga de los datos";
+		}
+
+		document.body.appendChild(divMsj);
+
+		setTimeout( ()=>{
+			document.body.removeChild(divMsj);
+		}, 4000);
+
+	};

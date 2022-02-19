@@ -279,6 +279,22 @@ main.principal{
 	display: flex;
 }
 
+#crearCuenta form .errForm{
+	display: flex;
+	width: 100%;
+
+	justify-content: center;
+	align-items: center;
+
+	overflow: auto;
+
+	font-size: 0.8rem;
+	text-transform: none;
+	color: white;
+
+	background-color: indianred;
+}
+
 #crearCuenta form .submit{
 	width: 100%;
 
@@ -330,4 +346,49 @@ main.principal{
 	height: 70px;
 	padding: 0 3px;
 	word-wrap: break-word;
+}
+
+
+/*---------------------------------------------------------*/
+
+.receivedNotification{
+	height: 200px;
+	width: 400px;
+
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	margin-left: -200px;
+
+	background-color: grey;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	border-radius: 12px;
+	font-size: 2rem;
+	text-align: center;
+	font-weight: bold;
+
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.6);
+
+	outline: solid 4px ;
+	border: solid 8px ;
+}
+
+.receivedNotification.ok{
+	background-color: darkseagreen;
+	outline-color: darkseagreen;
+
+	color: seagreen;
+	border-color: seagreen;
+}
+.receivedNotification.err{
+	background-color: indianred;
+	outline-color: indianred;
+
+	color: darkred;
+	border-color: darkred;
 }
