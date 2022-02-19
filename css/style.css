@@ -315,7 +315,6 @@ main.principal{
 #usuarios{
 	height: 78vh;
 	width: 100%;
-	padding: 0 4%;
 
 	overflow: auto;
 }
@@ -330,20 +329,24 @@ main.principal{
 	background-color: var(--colorSecundario);
 	color: white;
 	font-weight: normal;
-	font-size: 1.1em;
+	font-size: 1rem;
 	position: sticky;
 	top: 0;
+}
+
+#usuarios table tbody{
+	font-size: .85rem;
 }
 
 #usuarios table tbody tr:nth-of-type(2n){
 	background-color: var(--colorPrimario);
 }
 #usuarios table th{
-	height: 80px;
+	height: 70px;
 	padding: 0 3px;
 }
 #usuarios table td{
-	height: 70px;
+	height: 50;
 	padding: 0 3px;
 	word-wrap: break-word;
 }

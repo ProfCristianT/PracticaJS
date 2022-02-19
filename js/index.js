@@ -1,4 +1,8 @@
-const ampliarProductos = document.querySelector('#ampliarProductos');
+//MODULOS
+//Modulo de productos.html
+const productsModule = ()=>{
+
+	const ampliarProductos = document.querySelector('#ampliarProductos');
 
 	document.querySelectorAll("#productos a.producto").forEach( (producto,i,productos) => {
 		producto.addEventListener('click', ev=>{
@@ -28,10 +32,11 @@ const ampliarProductos = document.querySelector('#ampliarProductos');
 			})
 		})
 	})
+}
 
 
-
-// VALIDACION FORM
+//Modulo de crear-cuenta.html
+const create_accountModule = ()=>{
 
 	const form = document.querySelector("#crearCuenta form");
 
@@ -274,3 +279,80 @@ const ampliarProductos = document.querySelector('#ampliarProductos');
 		}, 4000);
 
 	};
+}
+
+//Modulo de usuarios.html
+const usersModule = ()=>{
+
+	fetch('https://jsonplaceholder.typicode.com/users/')
+	.then(response => {
+		if( response.ok ){
+			return response.json();
+		}
+	})
+	.then( json => {
+		console.log(json);
+		const tbody = document.querySelector("#usuarios table tbody");
+		const frag = document.createDocumentFragment();
+
+		json.forEach(user => {
+			const tr = document.createElement('tr');
+
+			//Separar nombre y apellido
+			arrayName = user.name.split(' ')
+			let apellido, nombre;
+
+			if(arrayName.length === 2){
+				nombre = arrayName[0];
+				apellido = arrayName[1];
+
+			}else if( arrayName[arrayName.length-1].length === 1 ){
+				nombre = arrayName[0]
+				apellido = `${arrayName[1]} ${arrayName[2]}`;
+
+			}else{
+				nombre = `${arrayName[0]} ${arrayName[1]}`;
+				apellido = arrayName[2]
+			}
+
+			//console.log(nombre+'/'+apellido)
+			let contenidoTr = `<td>${nombre}</td>`;
+			contenidoTr += `<td>${apellido}</td>`;
+			contenidoTr += `<td>${user.phone}</td>`;
+			contenidoTr += `<td>${user.email}</td>`;
+			contenidoTr += `<td>${user.address.street}</td>`;
+			contenidoTr += `<td>${user.address.suite}</td>`;
+			contenidoTr += `<td>${user.address.city}</td>`;
+			contenidoTr += `<td>${user.address.zipcode}</td>`;
+			contenidoTr += `<td>${user.company.name}</td>`;
+			contenidoTr += `<td>${user.company.catchPhrase}</td>`;
+
+			tr.innerHTML = contenidoTr;
+			frag.appendChild(tr);
+		})
+
+		tbody.appendChild(frag);
+	} )
+}
+
+//EJECUTE MODULE IIFE
+( ()=>{
+
+	const fileName =  location.pathname.split("/").pop().split(".")[0];
+	console.log(fileName)
+	switch (fileName.toLowerCase()) {
+		case "productos":
+			productsModule();
+			break;
+		case "usuarios":
+			usersModule();
+			break;
+		case "crear-cuenta":
+			create_accountModule();
+			break;
+		default:
+			console.warn("Modulo desconocido");
+			break;
+	}
+	
+}) ()
